@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import './App.css';
@@ -9,7 +9,8 @@ function App() {
   const [error, setError] = useState(null);
   const [currency, setCurrency] = useState('usd');
 
-  const fetchData = async () => {
+  // Usamos useCallback para que la función sea estable y Vercel no marque error
+  const fetchData = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
@@ -26,11 +27,11 @@ function App() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [currency]);
 
   useEffect(() => {
     fetchData();
-  }, [currency]);
+  }, [fetchData]);
 
   return (
     <div className="container">
@@ -84,7 +85,7 @@ function App() {
       </div>
 
       <footer style={{ marginTop: '20px', fontSize: '0.8rem', color: '#666', textAlign: 'center' }}>
-        Desarrollado por <strong>Juan Carlos Pavon Abrego</strong> | Datos en tiempo real vía CoinGecko
+        Desarrollado por <strong>Juan Carlos Pavón Ábrego</strong> | Datos en tiempo real vía CoinGecko
       </footer>
     </div>
   );
