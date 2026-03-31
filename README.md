@@ -1,6 +1,4 @@
-# Dashboard Dinametra - Juan Carlos Pavón Ábrego
 
-Prueba técnica para Ingeniero Front-End.
 
 ## 🛠️ Configuración y Ejecución
 1. Instalar dependencias: `npm install`
